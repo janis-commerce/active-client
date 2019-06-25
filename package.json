@@ -18,11 +18,13 @@
   "license": "ISC",
   "homepage": "https://github.com/janis-commerce/active-client#readme",
   "devDependencies": {
-    "husky": "^2.4.1",
+    "@janiscommerce/mongodb": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
+    "husky": "^2.4.1",
     "mocha": "^5.2.0",
+    "mock-require": "^3.0.3",
     "nyc": "^13.1.0",
     "sinon": "^7.3.2"
   },
@@ -31,5 +33,8 @@
   ],
   "directories": {
     "test": "tests"
+  },
+  "dependencies": {
+    "@janiscommerce/model-controller": "^1.4.0"
   }
 }
