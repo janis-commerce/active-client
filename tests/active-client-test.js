@@ -1,34 +1,54 @@
 'use strict';
 
-const path = require('path');
 const assert = require('assert');
-const mockRequire = require('mock-require');
 
 const sandbox = require('sinon').createSandbox();
 
+const { Model } = require('@janiscommerce/model-controller');
+
 const ActiveClient = require('../');
-const { ActiveClientError } = require('../lib');
 
 /* eslint-disable prefer-arrow-callback */
 
 describe('ActiveClient', () => {
 
-	/*
-	before(() => {
-		mockRequire(path.join(process.env(), 'config', 'database.json'), {
+	const theClient = {
+		id: 1,
+		foo: 'bar'
+	};
 
-		});
+	afterEach(() => {
+		sandbox.restore();
 	});
 
-	after(() => {
-		mockRequire.stopAll();
+	it('should return false when no passing the field or value', async function() {
+		const client = await ActiveClient.getByField();
+		assert(!client);
 	});
-*/
 
-	it('something', async function() {
+	it('should return false when no passing the value', async function() {
+		const client = await ActiveClient.getByField('foo');
+		assert(!client);
+	});
 
-		await ActiveClient.getClient();
+	it('should return false when model client not found the client', async function() {
 
+		sandbox.stub(Model.prototype, 'get')
+			.returns([]);
+
+		const client = await ActiveClient.getByField('foo', 'bar');
+
+		assert(!client);
+	});
+
+	it('should return the client when model client found the client', async function() {
+
+		sandbox.stub(Model.prototype, 'get')
+			.returns([theClient]);
+
+		const client = await ActiveClient.getByField('foo', 'bar');
+
+		assert.deepEqual(client, { ...theClient });
 	});
 
 });
