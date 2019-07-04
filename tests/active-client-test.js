@@ -4,11 +4,8 @@ const assert = require('assert');
 
 const sandbox = require('sinon').createSandbox();
 
-const { Model } = require('@janiscommerce/model-controller');
-
 const ActiveClient = require('../');
-
-/* eslint-disable prefer-arrow-callback */
+const ModelClient = require('../lib/model-client');
 
 describe('ActiveClient', () => {
 
@@ -21,19 +18,19 @@ describe('ActiveClient', () => {
 		sandbox.restore();
 	});
 
-	it('should return false when no passing the field or value', async function() {
+	it('should return false when no passing the field or value', async () => {
 		const client = await ActiveClient.getByField();
 		assert(!client);
 	});
 
-	it('should return false when no passing the value', async function() {
+	it('should return false when no passing the value', async () => {
 		const client = await ActiveClient.getByField('foo');
 		assert(!client);
 	});
 
-	it('should return false when model client not found the client', async function() {
+	it('should return false when model client not found the client', async () => {
 
-		sandbox.stub(Model.prototype, 'get')
+		sandbox.stub(ModelClient.prototype, 'get')
 			.returns([]);
 
 		const client = await ActiveClient.getByField('foo', 'bar');
@@ -41,9 +38,9 @@ describe('ActiveClient', () => {
 		assert(!client);
 	});
 
-	it('should return the client when model client found the client', async function() {
+	it('should return the client when model client found the client', async () => {
 
-		sandbox.stub(Model.prototype, 'get')
+		sandbox.stub(ModelClient.prototype, 'get')
 			.returns([theClient]);
 
 		const client = await ActiveClient.getByField('foo', 'bar');

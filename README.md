@@ -8,9 +8,19 @@ The module only has one method and a Model for the get.
 
 ## Installation
 
-```
+```bash
 npm install @janiscommerce/active-client
 ```
+
+## Settings
+This package uses the [Settings](https://www.npmjs.com/package/@janiscommerce/settings) package for handle settings.
+The setting key is `clients` and the available settings are the following
+
+| Setting | Default Value | Description |
+|--|--|--|
+| databaseKey | _default | The database key from DB configuration |
+| table | clients | The clients table name |
+
 
 ## API
 
