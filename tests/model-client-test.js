@@ -25,7 +25,7 @@ describe('ModelClient', () => {
 		sandbox.stub(Settings, 'get')
 			.returns(undefined);
 
-		assert.deepEqual(modelClient.table, 'clients');
+		assert.deepEqual(modelClient.constructor.table, 'clients');
 
 		assertSettingsCall();
 	});
@@ -45,7 +45,7 @@ describe('ModelClient', () => {
 		sandbox.stub(Settings, 'get')
 			.returns({ table: 'custom-table' });
 
-		assert.deepEqual(modelClient.table, 'custom-table');
+		assert.deepEqual(modelClient.constructor.table, 'custom-table');
 
 		assertSettingsCall();
 	});
