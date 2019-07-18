@@ -14,6 +14,10 @@ describe('ActiveClient', () => {
 		foo: 'bar'
 	};
 
+	class RandomClass {
+
+	}
+
 	afterEach(() => {
 		sandbox.restore();
 	});
@@ -46,6 +50,20 @@ describe('ActiveClient', () => {
 		const client = await ActiveClient.getByField('foo', 'bar');
 
 		assert.deepEqual(client, { ...theClient });
+	});
+
+	it('should propagate client when getting an instance from a client', async () => {
+
+		sandbox.stub(ModelClient.prototype, 'get')
+			.returns([theClient]);
+
+		const client = await ActiveClient.getByField('foo', 'bar');
+
+		assert.equal(typeof client.getInstance, 'function');
+
+		const instance = client.getInstance(RandomClass);
+
+		assert.deepEqual(client, instance.client);
 	});
 
 });

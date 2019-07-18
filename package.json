@@ -1,7 +1,7 @@
 {
   "name": "@janiscommerce/active-client",
-  "version": "1.1.1",
-  "description": "",
+  "version": "1.2.0",
+  "description": "A simple module for getting an Active Client from a field and a value",
   "main": "index.js",
   "scripts": {
     "test": "export TEST_ENV=true; mocha --exit -R nyan --recursive tests/",
