@@ -60,4 +60,12 @@ describe('ModelClient', () => {
 		assertSettingsCall();
 	});
 
+	it('should return a object when calling fields method', async () => {
+
+		assert.deepStrictEqual(ModelClient.fields, {
+			name: true,
+			storename: true
+		});
+	});
+
 });
