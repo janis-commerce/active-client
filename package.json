@@ -1,6 +1,6 @@
 {
   "name": "@janiscommerce/active-client",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A simple module for getting an Active Client from a field and a value",
   "main": "index.js",
   "scripts": {
